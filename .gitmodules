@@ -1,0 +1,3 @@
+[submodule "ChatGPTSim"]
+	path = ChatGPTSim
+	url = https://github.com/tommywu052/LabanotationSuite.git
