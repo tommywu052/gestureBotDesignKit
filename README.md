@@ -12,6 +12,10 @@ The kit contains a browser-based simulated robot with control software based on 
 ![Browser Model Wave](img/gB_BrowserModel_Wave.png)
 
 ## UPDATED 09/23/2023 - merge MSRAbotChatSIM as submodule to interact MSRAbot with ChatGPT directly
+![MSRAbotChatGPT](img/MSRAbot-chatgpt.png)
+
+## Demo Video
+[![MSRAbot ChatGPT Sim](https://img.youtube.com/vi/yr8m-PwKgfw/0.jpg)](https://www.youtube.com/watch?v=yr8m-PwKgfw)
 
 
 ## What is the gestureBot and who might be interested in using this kit?
