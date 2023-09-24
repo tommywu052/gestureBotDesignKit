@@ -86,7 +86,7 @@ App.prototype.setupTTS = function ()
         scope.loadVoices();
     };
 
-    this.ttsSupported = true;
+    this.ttsSupported = false;
 }
 //--------------------------------------------------------------------------------------------
 App.prototype.loadVoices = function ()
@@ -119,7 +119,15 @@ App.prototype.onTTSStart = function (event)
         this.lblTTSPhrase.innerHTML = event.utterance.text;
     }
 
+    console.log("onTTSStart");
+    //this.switch_mic('off');
+    setTimeout(function(){
+        console.log("Executed after 1 second");
+        switch_mic('off');
+    }, 1000);
+    
     this.monitorTTSProgress("start", event);
+    
 }
 //--------------------------------------------------------------------------------------------
 App.prototype.onTTSBoundary = function (event)
@@ -129,7 +137,7 @@ App.prototype.onTTSBoundary = function (event)
         var html = str.substring(0, event.charIndex) + "<strong>" + str.substring(event.charIndex, event.charIndex + event.charLength) + "</strong>" + str.substring(event.charIndex + event.charLength);
         this.lblTTSPhrase.innerHTML = html;
     }
-
+    console.log("onTTSBoundary");
     this.monitorTTSProgress("boundary", event);
 }
 //--------------------------------------------------------------------------------------------
@@ -139,6 +147,9 @@ App.prototype.onTTSEnd = function (event)
         this.lblTTSPhrase.innerHTML = event.utterance.text;
     }
 
+    //switch_mic('on');
+    //console.log("Executed after 1 second");
+
     this.monitorTTSProgress("end", event);
 
     this.processingData = null;
@@ -147,6 +158,18 @@ App.prototype.onTTSEnd = function (event)
     //
     // check for more
     this.processQueue();
+    console.log("onTTSEnd");
+    setTimeout(function(){
+        console.log("Executed after 0.5 second");
+        switch_mic('on');
+    }, 500);
+    
+    
+        
+
+    
+    
+    
 }
 //--------------------------------------------------------------------------------------------
 App.prototype.onTTSMark = function (event)
@@ -320,6 +343,7 @@ App.prototype.processQueue = function ()
     }
 
     this.sayThis(phrase);
+    
 }
 //--------------------------------------------------------------------------------------------
 App.prototype.monitorTTSProgress = function (status, event)
@@ -328,8 +352,9 @@ App.prototype.monitorTTSProgress = function (status, event)
     var charIndex = parseInt(event.charIndex);
     var charLength = parseInt(event.charLength);
     var time = event.elapsedTime;
-
+    console.log(event)
     var data = this.processingData;
+    console.log(data)
     var phrase = data['phrase'];
     var wordList = data['wordList'];
     var gestureName = data['gestureName'];
@@ -375,8 +400,10 @@ App.prototype.monitorTTSProgress = function (status, event)
                 this.playGesture(gestureName);
             }
         } else
-            console.log("ERROR: the spoken word '" + word + "' was not found in the original phrase! Ignoring...");
+            {console.log("ERROR: the spoken word '" + word + "' was not found in the original phrase! Ignoring...");
+            this.playGesture(gestureName);}
     }
+    
 }
 //--------------------------------------------------------------------------------------------
 App.prototype.loadGesture = function (gestureName)
@@ -400,8 +427,8 @@ App.prototype.sayThis = function (phrase)
 
     // set utterance properties
     utterance.voice = this.voice;
-    utterance.pitch = 0.6;  // 0 to 2
-    utterance.rate = 0.6;   // 0.1 to 10
+    utterance.pitch = 1;  // 0 to 2
+    utterance.rate = 0.9;   // 0.1 to 10
     utterance.volume = 0.8; // 0 to 1
 
     utterance.onstart = this.onTTSStart.bind(this);
@@ -414,5 +441,23 @@ App.prototype.sayThis = function (phrase)
     synthesis.speak(utterance);
 
     this.isTTSIdle = false;
+}
+
+App.prototype.switch_mic =function (status) {
+    if (status=='on'){
+        var toggleButton = document.getElementById('button_mic');
+        toggleButton.disabled = false;
+        if (toggleButton.textContent == 'Start Mic') {
+            document.getElementById("mic_enabled").setAttribute('value', 'no')
+        } else {
+            document.getElementById("mic_enabled").setAttribute('value', 'yes')
+        }
+    }
+    else {
+        document.getElementById("mic_enabled").setAttribute('value', 'no')
+        var toggleButton = document.getElementById('button_mic');
+        toggleButton.textContent == 'Start Mic'
+        toggleButton.disabled = true;
+    }
 }
 //--------------------------------------------------------------------------------------------

@@ -697,6 +697,14 @@ gestureBot.prototype.setServoTargets = function (servos, immediate=false)
 {
     for (key in servos) {
         var servo = servos[key];
+        if(key == 'rarm'){
+            servo = servos[key];
+            servos[key].target = -servos[key].target+180
+        }
+        if(key == 'larm'){
+            servo = servos[key];
+            servos[key].target = -servos[key].target-180
+        }
         var target = servo.target;
         var duration = servo.dur;
 

@@ -7,8 +7,8 @@ here:deictic here:here
 there:deictic there rotate|deictic there m|deictic there h:there
 this:deictic this:this
 that:deictic that h|deictic that rotate:that
-you:deictic you l|youandme4:you|your
-me:deictic me l|youandme4:i|me|my
+you:deictic you l|good:you|your
+me:deictic me l|good:i|me|my
 goodbye:goodbye:goodbye|bye
 hello:hello|hello4:hello|hi|Hello|Hi
 laugh:laugh head:haha|ha|Ha

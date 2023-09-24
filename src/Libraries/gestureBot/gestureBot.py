@@ -78,11 +78,11 @@ class gestureBot(webSocket.HttpServerWrapper):
         self.servoAngleLimits['torso'] =        { 'min':  -90, 'max':  90 }
         self.servoAngleLimits['hip'] =          { 'min':  -20, 'max':  14 }
         self.servoAngleLimits['rshoulder'] =    { 'min': -180, 'max': 180 }
-        self.servoAngleLimits['rarm'] =         { 'min':  -90, 'max':  90 }
+        self.servoAngleLimits['rarm'] =         { 'min':  -180, 'max':  180 }
         self.servoAngleLimits['relbow'] =       { 'min': -180, 'max': 180 }
         self.servoAngleLimits['rhand'] =        { 'min':  -90, 'max':  90 }
         self.servoAngleLimits['lshoulder'] =    { 'min': -180, 'max': 180 }
-        self.servoAngleLimits['larm'] =         { 'min':  -90, 'max':  90 }
+        self.servoAngleLimits['larm'] =         { 'min':  -180, 'max':  180 }
         self.servoAngleLimits['lelbow'] =       { 'min': -180, 'max': 180 }
         self.servoAngleLimits['lhand'] =        { 'min':  -90, 'max':  90 }
 
@@ -442,7 +442,8 @@ class gestureBot(webSocket.HttpServerWrapper):
 
         # map to skeleton pose
         servos['lshoulder'] = -theta
-        servos['larm'] = -(phi + (math.pi / 2))
+        #servos['larm'] = -(phi + (math.pi / 2))
+        servos['larm'] = (phi - (math.pi / 2))
 
         matT.makeRotationX(math.pi - theta)
         matP.makeRotationZ(math.pi + phi)
@@ -476,8 +477,8 @@ class gestureBot(webSocket.HttpServerWrapper):
 
         # map to skeleton pose
         servos['rshoulder'] = -theta
-        servos['rarm'] = (phi + (math.pi / 2))
-
+        # servos['rarm'] = (phi + (math.pi / 2))
+        servos['rarm'] = (-phi + (math.pi / 2))
         matT.makeRotationX(theta)
         matP.makeRotationZ(phi)
         matR.multiplyMatrices(matT, matP)
