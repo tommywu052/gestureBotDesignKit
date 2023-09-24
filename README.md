@@ -11,6 +11,9 @@ The kit contains a browser-based simulated robot with control software based on 
 
 ![Browser Model Wave](img/gB_BrowserModel_Wave.png)
 
+## UPDATED 09/23/2023 - merge MSRAbotChatSIM as submodule to interact MSRAbot with ChatGPT directly
+
+
 ## What is the gestureBot and who might be interested in using this kit?
 The gestureBot is a semi-humanoid service-robot capable of mimicking human gestures. Its purpose is to support research and education in the field of ***Human-Robot-Interaction (HRI)***. Its function is to physically and virtually render gestures stored in a digital Labanotation format. The designation "semi-humanoid" means that it has some but not all of the limbs and joints of a human form. The designation **"service-robot"** refers to a requirement that is designed to safely operate directly with humans, as opposed to an **"industrial-robot"** that usually repeats tasks within a cordoned-off safety zone. The gestureBot was adapted from a project originally created by interns working for Microsoft Research Asia. We've built on their work and put together this design kit to help students learn with a fun hand's-on project that provides exposure to key technologies used in service-robotics. Researchers in the field of HRI can use the kit to support experimentation in the use of gestures to enhance robot-to-human comunication.
 
